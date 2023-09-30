@@ -26,6 +26,6 @@ Incorporating a Content Delivery Network (CDN) is expected to reduce latency sig
 
 Integrating a CDN, which utilizes a network of interconnected servers and caching, significantly improved the delivery speed of our web content and reduced latency.  In our case with the URL Shortener, latency went from 41ms to 10ms, which is a 75% reduction in latency.  As part of this enhancement, we also integrated AWS CloudFront into our production web server architecture.  
 
-![Diagram](Images/Blitz_1_Diagram.png)
+![Diagram](Images/Biltz_1_Diagram.png)
 
 
