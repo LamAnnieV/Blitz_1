@@ -6,27 +6,25 @@ By:  Annie V Lam - Kura Labs
 
 # Background
 
-Nike emailed us about the URL Shortener.  In Nike's email, Nike mentioned customers are complaining about how long it takes to load their web pages.  Nike would like us to reduce the amount of latency customers are experiencing.  
+Nike contacted us regarding our URL Shortener. In their email, Nike mentioned customer complaints about slow webpage loading times and has requested that we work on reducing latency for their customers.  
 
 ## Troubleshooting
 
-For testing, in order not to crash the production web server, we created a new web server.  This test environment is in the same region, the same VPC, but different availability zones (AZ) as the production environment.  As the test server is in the same region as the production server, just in different buildings, the difference in latency if there is any, should be immaterial.
+For testing purposes, to avoid impacting the production web server, we created a separate web server in the same region and VPC but in different availability zones (AZs) from the production environment. This setup ensures comparability while preventing disruptions.
 
-Our third-party application, Codon, allows us to test for average latency.  We used Codon to send a thousand GET requests within 2 seconds to the test server to see what the average latency is. The result is that our URL Shortener website's average response time (latency) is 40.879 ms, which is much longer than what we would like.  
+We utilized JMeter, a testing tool, to measure average latency. We configured it to send 1000 GET requests within 2 seconds to assess the entire response time, from request initiation to content delivery. The results indicate that our URL Shortener website currently has an average response time (latency) of 40.879 ms, which exceeds our desired target  
 
 ![Latency](Images/Web_Server_Latency.png)
 
-
 ## Possible Resolution
 
-Placing a Content Delivery Network (CDN) most likely will reduce the latency time since the web content will be cached in the CDN.  As our whole infrastructure is on the AWS platform, we decided to use AWS CDN service, CloudFront.  After creating the CloudFront CDN distribution, we used Codon to test latency with the same parameters, 1000 GET requests in a matter of 2 seconds.  The CDN reduced latency to 9.652 ms.
+Incorporating a Content Delivery Network (CDN) is expected to reduce latency significantly by caching web content. Since our entire infrastructure is hosted on the AWS platform, we opted to implement AWS's CDN service, CloudFront. After integrating CloudFront's CDN distribution, we conducted latency tests using JMeter with the same parameters—1000 GET requests within 2 seconds. The results showed a remarkable reduction in latency to 9.652 ms.
 
 ![Latency](Images/CDN_Latency.png)
 
-
 ## Conclusion
 
-Adding a CDN for static content helps with latency.  In our case with the URL Shortener, latency went from 41ms to 10ms, which is a 75% increase in efficiency rate.  As the CDN helped with latency, we also added AWS CloudFront to our production web server.  
+Integrating a CDN, which utilizes a network of interconnected servers and caching, significantly improved the delivery speed of our web content and reduced latency.  In our case with the URL Shortener, latency went from 41ms to 10ms, which is a 75% reduction in latency.  As part of this enhancement, we also integrated AWS CloudFront into our production web server architecture.  
 
 ![Diagram](Images/Blitz_1_Diagram.png)
 
