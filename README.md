@@ -6,17 +6,17 @@ By:  Annie V Lam - Kura Labs
 
 # Background
 
-Nike emailed us about the URL Shortener.  In Nike's email, Nike mentioned customers are complaining about the amount of time it takes to load thier webpages.  Nike will like us to reduce the amount of latency customers are experincing.  
+Nike emailed us about the URL Shortener.  In Nike's email, Nike mentioned customers are complaining about how long it takes to load their webpages.  Nike would like us to reduce the amount of latency customers are experiencing.  
 
 ## Troubleshooting
 
-We have a third party application, Codon, that allows us to test for average latency.  In order not to crash the production web server, we created another web server in a test envirnoment that is in the same region, same VPC, but different availability zones (AZ).  As the test server is in the same region as the production server, just in different buildings, the difference in latency if there is any, should be immaterial.
+For the purpose of testing, in order not to crash the production web server, we created new web server for testing.  This test environment is in the same region, the same VPC, but different availability zones (AZ) as the production environment.  As the test server is in the same region as the production server, just in different buildings, the difference in latency if there is any, should be immaterial.
 
-A new hire was tasked with updating the URL shortener. The new hire committed version 2 of the application to the main branch. Which automatically triggered a build, test, and deploy to the production server, replacing version 1 of the application running on the server.  We used Codon to send a thousand GET requests within 2 seconds to see what the latency is.
+Our third-party application, Codon, allows us to test for average latency.  We used Codon to send a thousand GET requests within 2 seconds to the test server to see what the average latency is. 
 
 ## Result
 
-The result is that our URL Shortener webser
+The result is that our URL Shortener website's average response time (latency) is 40.879 ms, which is much longer than what we would like.  
 
 ## Post-Incident Report
 The URL Shortener launched, but when testing the function, the URL Shortener was giving Internal Server Error with a 500 code:
