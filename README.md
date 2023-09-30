@@ -28,3 +28,6 @@ Placing a Content Delivery Network (CDN) most likely will reduce the latency tim
 
 Adding a CDN for static content helps with latency.  In our case with the URL Shortener, latency went from 41ms to 10ms, which is a 75% increase in efficiency rate.  As the CDN helped with latency, we also added AWS CloudFront to our production web server.  
 
+![Diagram](Images/Blitz_1_Diagram.png)
+
+
